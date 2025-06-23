@@ -16,7 +16,7 @@ export const signJWT = ({ id, maxAge }, key) => {
     key,
     {
       expiresIn: maxAge,
-      algorithm: 'RS512'
+    //   algorithm: 'RS512'
     }
   );
   return token;
@@ -28,7 +28,7 @@ export const verifyJWT = (token, key) => {
     }
     try{
         const decoded = jwt.verify(token, key, {
-            algorithms: 'RS512'
+            // algorithms: 'RS512'
         });
         const { maxAge, signTime} = decoded;
         if(Date.now() <= signTime + maxAge){

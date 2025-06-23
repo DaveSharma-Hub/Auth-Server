@@ -26,6 +26,10 @@ app.use(express.json());
 
 app.post('/createAuth',(req, res)=>{
     const { id } = req.body;
+    if(!id){
+        res.sendStatus(400);
+        return;
+    }
     const token = signJWT({id, maxAge: MAX_AGE}, SECRET_SIGNING_KEY);
     res.cookie(TOKEN_NAME, token, {
         secure: true,
